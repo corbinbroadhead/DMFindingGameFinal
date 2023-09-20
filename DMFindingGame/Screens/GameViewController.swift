@@ -15,7 +15,7 @@ class GameViewController: UIViewController {
     
     @IBOutlet weak var targetLetterLabel: UILabel!
     
-    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var currentScoreLabel: UILabel!
     
     @IBOutlet weak var secondsLabel: UILabel!
     
@@ -58,7 +58,7 @@ class GameViewController: UIViewController {
     
     func updateUI() {
         targetLetterLabel.text = gameBrain.targetLetter
-        scoreLabel.text = String(gameBrain.score)
+        currentScoreLabel.text = String(gameBrain.score)
         secondsLabel.text = String(gameBrain.secondsRemaining)
         let num = letterButtons.count - 1
         for index in 0...num {
@@ -88,7 +88,7 @@ class GameViewController: UIViewController {
         
         if gameBrain.secondsRemaining <= 0 {
             timer.invalidate()
-            let score = Int(scoreLabel.text!)
+            let score = Int(currentScoreLabel.text!)
             CoreDataManager.shared.addScore(score: score!)
             navigationController?.popToRootViewController(animated: true)
         }

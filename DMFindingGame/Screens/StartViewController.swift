@@ -13,9 +13,8 @@ import UIKit
  */
 class StartViewController: UIViewController {
     
-    @IBOutlet weak var highScoreLabel: UILabel!
+    @IBOutlet weak var bestScoreLabel: UILabel!
     
-   
     
     let gameBrain = GameBrain.shared
     
@@ -24,14 +23,21 @@ class StartViewController: UIViewController {
      */
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        highScoreLabel.text = "High Score: \(String(gameBrain.highScore))"
+        bestScoreLabel.text = "High Score: \(String(gameBrain.highScore))"
     }
     
     /**
      4.1 Transition the user to the `GameViewController` when the start button is tapped.
      */
     @IBAction func startPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "StartToGame", sender: self)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let gameViewController = storyboard.instantiateViewController(withIdentifier: "GameViewController") as! GameViewController
+        navigationController?.pushViewController(gameViewController, animated: true)
     }
     
+    @IBAction func viewAllPressed(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let statsViewController = storyboard.instantiateViewController(withIdentifier: "StatsViewController") as! StatsViewController
+        navigationController?.pushViewController(statsViewController, animated: true)
+    }
 }
