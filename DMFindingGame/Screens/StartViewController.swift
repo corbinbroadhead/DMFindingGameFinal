@@ -15,7 +15,7 @@ class StartViewController: UIViewController {
     
     @IBOutlet weak var bestScoreLabel: UILabel!
     
-    var scores = CoreDataManager.shared.fetchScores()
+    var bestScore = CoreDataManager.shared.calculateHighScore()
     let gameBrain = GameBrain.shared
     
     /**
@@ -23,8 +23,7 @@ class StartViewController: UIViewController {
      */
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        bestScoreLabel.text = "Best Score: \(scores.max()?.score)"
-        bestScoreLabel.text = "Best Score: In Progress"
+        bestScoreLabel.text = "Best Score: \(bestScore)"
     }
     
     /**
