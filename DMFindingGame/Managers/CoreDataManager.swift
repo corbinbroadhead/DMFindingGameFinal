@@ -40,6 +40,7 @@ class CoreDataManager {
     func fetchScores() -> [Score] {
         do {
             let request = NSFetchRequest<Score>(entityName: "Score")
+            print(try persistentContainer.viewContext.fetch(request))
             return try persistentContainer.viewContext.fetch(request)
         } catch {
             return []

@@ -59,7 +59,7 @@ class GameViewController: UIViewController {
     func updateUI() {
         targetLetterLabel.text = gameBrain.targetLetter
         currentScoreLabel.text = String(gameBrain.score)
-        secondsLabel.text = String(gameBrain.secondsRemaining)
+        secondsLabel.text = "Seconds: \(gameBrain.secondsRemaining)"
         let num = letterButtons.count - 1
         for index in 0...num {
             letterButtons[index].setTitle(gameBrain.randomLetters[index], for: .normal)

@@ -11,29 +11,24 @@ import CoreData
 class StatsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
+    var scores = CoreDataManager.shared.fetchScores()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        
+        print(scores)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return CoreDataManager.shared.fetchScores().count 
+        return scores.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ScoreCell", for: indexPath)
-        
-        let request = NSFetchRequest<Score>(entityName: "Score")
-        do {
-            let scores = try CoreDataManager.shared.persistentContainer.viewContext.fetch(request)
-            cell.textLabel?.text = "\(scores[indexPath.row].value(forKey: "Score"))"
-        } catch {
-            print("error occured loading table view")
-        }
+        let score = scores[indexPath.row].score
+        cell.textLabel?.text = "\(score)"
         
         return cell
     }
