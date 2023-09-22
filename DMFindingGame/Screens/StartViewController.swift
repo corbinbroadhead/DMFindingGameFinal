@@ -23,6 +23,7 @@ class StartViewController: UIViewController {
      */
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        bestScore = CoreDataManager.shared.calculateHighScore()
         bestScoreLabel.text = "Best Score: \(bestScore)"
     }
     
